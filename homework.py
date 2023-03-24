@@ -69,9 +69,9 @@ class Running(Training):
 
     def get_spent_calories(self) -> float:
         """Получить количество потраченных на бег калории"""
-        return ((self.CALORIES_MEAN_SPEED_MULTIPLIER * self.get_mean_speed() +
-                self.CALORIES_MEAN_SPEED_SHIFT) * self.weight /
-                self.M_IN_KM * self.duration * self.HOURS_IN_MIN)
+        return ((self.CALORIES_MEAN_SPEED_MULTIPLIER * self.get_mean_speed()
+                + self.CALORIES_MEAN_SPEED_SHIFT) * self.weight
+                / self.M_IN_KM * self.duration * self.HOURS_IN_MIN)
 
 
 class SportsWalking(Training):
@@ -94,10 +94,10 @@ class SportsWalking(Training):
 
     def get_spent_calories(self) -> float:
         """Получить количество потраченных на ходьбу калории"""
-        return ((self.CALORIES_WEIGHT_MULTIPLIER * self.weight +
-                ((self.get_mean_speed() * self.KMH_IN_MS) ** 2 / (self.height /
-                 self.CM_IN_M)) * self.CALORIES_WEIGHT_SECOND_MULTIPLIER *
-                 self.weight) * self.duration * self.HOURS_IN_MIN)
+        return ((self.CALORIES_WEIGHT_MULTIPLIER * self.weight
+                + ((self.get_mean_speed() * self.KMH_IN_MS) ** 2 / (self.height
+                 / self.CM_IN_M)) * self.CALORIES_WEIGHT_SECOND_MULTIPLIER
+                * self.weight) * self.duration * self.HOURS_IN_MIN)
 
 
 class Swimming(Training):
@@ -120,13 +120,13 @@ class Swimming(Training):
 
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость плавания."""
-        return (self.length_pool * self.count_pool /
-                self.M_IN_KM / self.duration)
+        return (self.length_pool * self.count_pool
+                / self.M_IN_KM / self.duration)
 
     def get_spent_calories(self) -> float:
         '''Получить количество потраченных на плавание калорий'''
-        return ((self.get_mean_speed() + self.CALORIES_MEAN_SPEED_SHIFT) *
-                self.CALORIES_SPEED_MULTIPLIER * self.weight * self.duration)
+        return ((self.get_mean_speed() + self.CALORIES_MEAN_SPEED_SHIFT)
+                * self.CALORIES_SPEED_MULTIPLIER * self.weight * self.duration)
 
 
 def read_package(workout_type: str, data: list) -> Training:
