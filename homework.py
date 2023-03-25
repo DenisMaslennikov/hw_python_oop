@@ -128,12 +128,7 @@ def read_package(workout_type: str, data: list[int]) -> Training:
     training_type_to_class = {
         'SWM': Swimming,
         'RUN': Running,
-        'WLK': SportsWalking,
-<<<<<<< HEAD
-    }
-=======
-        }
->>>>>>> fb4381f6c09609af6048bbe85d49176f6f7a84af
+        'WLK': SportsWalking, }
     training = training_type_to_class.get(workout_type, None)
     if training:
         return training(*data)
