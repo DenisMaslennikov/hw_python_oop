@@ -125,15 +125,16 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list[int]) -> Training:
     """Прочитать данные полученные от датчиков."""
-    training_type_to_class = {
-        'SWM': Swimming,
+    training_type_to_class: dict[str, Training] = {
+        'SWM1': Swimming,
         'RUN': Running,
-        'WLK': SportsWalking, }
-    training = training_type_to_class.get(workout_type, None)
-    if training:
-        return training(*data)
-    raise KeyError('Valid workout type only: \'SWM\' - Swimming, \'RUN\' - '
-                   'Running, \'WLK\' - SportsWalking,')
+        'WLK': SportsWalking,
+    }
+    training = training_type_to_class.get(workout_type)
+    if not training:
+        raise KeyError('Valid workout type only: \'{0}\' \'{1}\' \'{2}\''
+                       .format(*training_type_to_class),(*training_type_to_class.values()).__name__)
+    return training(*data)
 
 
 def main(training: Training) -> None:
